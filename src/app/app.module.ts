@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BookmarksComponent
   ],
   imports: [
     BrowserModule

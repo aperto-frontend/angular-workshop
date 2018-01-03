@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmarks {
+  display: flex;
+  justify-content: flex-start;
+
+  &__list {
+    list-style: none inside;
+    padding-left: 20px;
+  }
+}
+
