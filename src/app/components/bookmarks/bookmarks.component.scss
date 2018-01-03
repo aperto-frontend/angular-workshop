@@ -13,5 +13,10 @@
     list-style: none inside;
     padding-left: 20px;
   }
+
+  &__error {
+    color: red;
+    font-size: 0.75rem;
+  }
 }
 

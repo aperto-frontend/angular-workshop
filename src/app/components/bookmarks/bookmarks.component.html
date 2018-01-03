@@ -1,14 +1,9 @@
 <div class="bookmarks">
   <h1>Bookmarks</h1>
   <ul class="bookmarks__list">
-    <li>
-      <a href="#">Title One</a>
-    </li>
-    <li>
-      <a href="#">Title Two</a>
-    </li>
-    <li>
-      <a href="#">Title Three</a>
+    <li *ngFor="let bookmark of bookmarks;">
+      <a href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+      <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmarks__error">(Missing url)</span></span>
     </li>
   </ul>
 </div>
