@@ -6,8 +6,25 @@
 }
 
 .bookmarks {
+  position: relative;
   display: flex;
   justify-content: flex-start;
+
+  &__headline {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%) translateY(140%);
+    width: 200%;
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      top: -10px;
+      width: 100%;
+      height: 1px;
+      background-color: black;
+    }
+  }
 
   &__list {
     list-style: none inside;

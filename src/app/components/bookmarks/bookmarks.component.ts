@@ -20,7 +20,7 @@ export class BookmarksComponent implements OnInit {
     },
     {
       id: 3,
-      url: 'https://blog.angular.io/'
+      url: 'https://blog.angular.io'
     },
     {
       id: 4,
