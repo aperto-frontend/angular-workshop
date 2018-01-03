@@ -1,0 +1,4 @@
+<li class="bookmark-item">
+  <a target="_blank" rel="noopener" href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+  <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmarks__error">(Missing url)</span></span>
+</li>

@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { BookmarkItemComponent } from './components/bookmarks/bookmark-item/bookmark-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookmarksComponent
+    BookmarksComponent,
+    BookmarkItemComponent
   ],
   imports: [
     BrowserModule
