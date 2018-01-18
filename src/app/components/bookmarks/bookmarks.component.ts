@@ -1,9 +1,8 @@
 import {
-  Component, DoCheck, ElementRef, OnChanges, OnInit, SimpleChanges,
-  ViewChild
+  Component, ElementRef, OnInit, ViewChild
 } from '@angular/core';
 import { IBookmark } from './bookmark.interface';
-
+import { BookmarksService } from '../../services/bookmarks.service';
 @Component({
   selector: 'app-bookmarks',
   templateUrl: './bookmarks.component.html',
@@ -17,71 +16,48 @@ export class BookmarksComponent implements OnInit {
 
   @ViewChild('urlInput') urlInput: ElementRef;
 
-  bookmarks = [
-    {
-      id: 1,
-      title: 'Tour of Heroes',
-      url: 'https://angular.io/tutorial'
-    },
-    {
-      id: 2,
-      title: 'CLI Documentation',
-      url: 'https://github.com/angular/angular-cli/wiki'
-    },
-    {
-      id: 3,
-      url: 'https://blog.angular.io'
-    },
-    {
-      id: 4,
-      title: 'Angular Home'
-    }
-  ];
+  bookmarks: IBookmark[];
 
   newMode = false;
 
-  constructor() { }
+  updateIndex = -1;
+
+  constructor(private bookmarksService: BookmarksService) { }
 
   ngOnInit() {
-  }
-
-  bookmarkChange(index: number, bookmark: IBookmark) {
-    const updatedBookmarks = [...this.bookmarks];
-    updatedBookmarks[index] = bookmark;
-
-    this.bookmarks = updatedBookmarks;
-
-    console.log(this.bookmarks);
-  }
-
-  delete(id: number) {
-    const bookmarks = this.bookmarks.filter((bookmark) => {
-      return bookmark.id !== id;
-    });
-
-    this.bookmarks = [...bookmarks];
-  }
-
-  onNew() {
-    this.newMode = true;
-  }
-
-  onNewClose() {
-    this.newMode = false;
+    this.bookmarks = this.bookmarksService.get();
   }
 
   create(event: any) {
     event.preventDefault();
 
-    const createdBookmark: IBookmark = {
-      id: this.bookmarks.length + 1,
+    this.bookmarks = this.bookmarksService.create({
       title: this.titleInput.nativeElement.value,
       url: this.urlInput.nativeElement.value
-    };
+    });
 
     this.bookmarkForm.nativeElement.reset();
     this.newMode = false;
+    this.updateIndex = -1;
+  }
 
-    this.bookmarks = [...this.bookmarks, createdBookmark];
+  update(index: number, bookmark: IBookmark) {
+    this.bookmarks = this.bookmarksService.update(index, bookmark);
+    this.updateIndex = index;
+  }
+
+  delete(id: number) {
+    this.bookmarks = this.bookmarksService.delete(id);
+    this.updateIndex = -1;
+  }
+
+  onNew() {
+    this.newMode = true;
+    this.updateIndex = -1;
+  }
+
+  onNewClose() {
+    this.newMode = false;
+    this.updateIndex = -1;
   }
 }

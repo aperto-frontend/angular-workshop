@@ -19,6 +19,7 @@ export class BookmarkItemComponent implements OnInit {
   @Output()
   bookmarkChange: EventEmitter<IBookmark> = new EventEmitter<IBookmark>();
 
+  @Input()
   editMode = false;
 
   constructor() { }

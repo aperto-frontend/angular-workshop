@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { BookmarkItemComponent } from './components/bookmarks/bookmark-item/bookmark-item.component';
+import { BookmarksService } from './services/bookmarks.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { BookmarkItemComponent } from './components/bookmarks/bookmark-item/book
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [BookmarksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

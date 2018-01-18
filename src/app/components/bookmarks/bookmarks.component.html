@@ -3,12 +3,15 @@
   <div class="bookmarks__list">
     <app-bookmark-item *ngFor="let bookmark of bookmarks; let i = index;"
                        [bookmark]="bookmark"
+                       [editMode]="i === updateIndex"
                        (deleteRequest)="delete($event)"
-                       (bookmarkChange)="bookmarkChange(i, $event)"
+                       (bookmarkChange)="update(i, $event)"
     >
     </app-bookmark-item>
     <div class="bookmarks__button-group">
+      <span *ngIf="!bookmarks.length && !newMode" class="bookmarks__inline-text">Create a</span>
       <button *ngIf="!newMode" (click)="onNew($event)" class="bookmarks__button">new</button>
+      <span *ngIf="!bookmarks.length && !newMode" class="bookmarks__inline-text">bookmark!</span>
       <button *ngIf="newMode" (click)="onNewClose($event)" class="bookmarks__button">close</button>
     </div>
     <form (submit)="create($event)" action="#" method="get" #bookmarkForm *ngIf="newMode" class="bookmarks__form">

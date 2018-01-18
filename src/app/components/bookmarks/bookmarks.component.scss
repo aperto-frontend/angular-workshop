@@ -31,7 +31,12 @@
   &__list {
     position: relative;
     list-style: none inside;
+    min-width: 264px;
     padding-left: 20px;
+  }
+
+  &__inline-text {
+    padding-right: 6px;
   }
 
   &__button-group {

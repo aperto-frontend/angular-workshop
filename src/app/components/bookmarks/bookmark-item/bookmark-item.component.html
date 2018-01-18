@@ -11,11 +11,11 @@
   <div *ngIf="editMode" class="bookmark-item__form">
     <div class="bookmark-item__form-group">
       <label class="bookmark-item__label" [attr.for]="'title-' + bookmark.id">Title</label>
-      <input class="bookmark-item__input" type="text" [id]="'title-' + bookmark.id" [(ngModel)]="bookmark.title" (ngModelChange)="onBookmarkChange($event)" />
+      <input class="bookmark-item__input" type="text" [id]="'title-' + bookmark.id" [(ngModel)]="bookmark.title" (change)="onBookmarkChange($event)" />
     </div>
     <div class="bookmark-item__form-group">
       <label class="bookmark-item__label" [attr.for]="'url-' + bookmark.id">URL</label>
-      <input class="bookmark-item__input" type="text" [id]="'url-' + bookmark.id" [(ngModel)]="bookmark.url" (ngModelChange)="onBookmarkChange($event)" />
+      <input class="bookmark-item__input" type="text" [id]="'url-' + bookmark.id" [(ngModel)]="bookmark.url" (change)="onBookmarkChange($event)" />
     </div>
   </div>
 </div>
