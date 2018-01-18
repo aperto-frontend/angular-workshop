@@ -13,6 +13,8 @@ export class BookmarkItemComponent implements OnInit {
   @Output()
   deleteRequest: EventEmitter<string> = new EventEmitter<string>();
 
+  editMode = false;
+
   constructor() { }
 
   ngOnInit() {
@@ -20,5 +22,13 @@ export class BookmarkItemComponent implements OnInit {
 
   onDelete(event: any) {
     this.deleteRequest.emit(this.bookmark.id);
+  }
+
+  onEdit(event: any) {
+    this.editMode = true;
+  }
+
+  onEditClose(event: any) {
+    this.editMode = false;
   }
 }

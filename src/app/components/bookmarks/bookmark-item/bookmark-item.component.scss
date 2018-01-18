@@ -10,4 +10,32 @@
     color: red;
     font-size: 0.75rem;
   }
+
+  &__button-group {
+    display: inline-flex;
+  }
+
+  &__button {
+    width: 48px;
+    margin-right: 6px;
+
+    &.is-close {
+
+    }
+  }
+
+  &__form {
+    margin: 12px 0 12px 113px;
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+  }
+
+  &__input {
+    display: block;
+    margin-bottom: 8px;
+  }
 }
