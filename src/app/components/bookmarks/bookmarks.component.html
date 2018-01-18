@@ -1,9 +1,15 @@
 <div class="bookmarks">
   <h1 class="bookmarks__headline">Bookmarks</h1>
   <div class="bookmarks__list">
-    <app-bookmark-item *ngFor="let bookmark of bookmarks"
+    <app-bookmark-item *ngFor="let bookmark of bookmarks; let i = index;"
                        [bookmark]="bookmark"
-                       (deleteRequest)="delete($event)">
+                       (deleteRequest)="delete($event)"
+                       (bookmarkChange)="bookmarkChange(i, $event)"
+    >
     </app-bookmark-item>
   </div>
+
+  <pre>
+    {{bookmarks | json}}
+  </pre>
 </div>

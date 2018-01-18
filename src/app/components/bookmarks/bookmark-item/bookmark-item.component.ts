@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component, EventEmitter, Input, OnInit, Output
+} from '@angular/core';
+import { IBookmark } from '../bookmark.interface';
 
 @Component({
   selector: 'app-bookmark-item',
@@ -12,6 +15,9 @@ export class BookmarkItemComponent implements OnInit {
 
   @Output()
   deleteRequest: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  bookmarkChange: EventEmitter<IBookmark> = new EventEmitter<IBookmark>();
 
   editMode = false;
 
@@ -30,5 +36,9 @@ export class BookmarkItemComponent implements OnInit {
 
   onEditClose(event: any) {
     this.editMode = false;
+  }
+
+  onBookmarkChange() {
+    this.bookmarkChange.emit(this.bookmark);
   }
 }

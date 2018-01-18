@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { IBookmark } from './bookmark.interface';
 
 @Component({
   selector: 'app-bookmarks',
@@ -31,6 +32,15 @@ export class BookmarksComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  bookmarkChange(index: number, bookmark: IBookmark) {
+    const updatedBookmarks = [...this.bookmarks];
+    updatedBookmarks[index] = bookmark;
+
+    this.bookmarks = updatedBookmarks;
+
+    console.log(this.bookmarks);
   }
 
   delete(id: number) {
