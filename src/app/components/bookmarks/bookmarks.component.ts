@@ -74,7 +74,7 @@ export class BookmarksComponent implements OnInit {
     event.preventDefault();
 
     const createdBookmark: IBookmark = {
-      id: this.bookmarks.length,
+      id: this.bookmarks.length + 1,
       title: this.titleInput.nativeElement.value,
       url: this.urlInput.nativeElement.value
     };
