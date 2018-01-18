@@ -1,3 +1,5 @@
+@import "../../shared/scss/mixins/components/bookmark.mixins";
+
 :host {
   display: flex;
   height: 100%;
@@ -27,8 +29,29 @@
   }
 
   &__list {
+    position: relative;
     list-style: none inside;
     padding-left: 20px;
+  }
+
+  &__button-group {
+    @include bookmark-button-group();
+  }
+
+  &__button {
+    @include bookmark-button();
+  }
+
+  &__form {
+    @include bookmark-form();
+  }
+
+  &__label {
+    @include bookmark-label();
+  }
+
+  &__input {
+    @include bookmark-input();
   }
 }
 

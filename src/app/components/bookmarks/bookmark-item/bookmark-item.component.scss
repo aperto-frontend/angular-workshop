@@ -1,10 +1,7 @@
+@import "../../../shared/scss/mixins/components/bookmark.mixins";
+
 .bookmark-item {
   padding-bottom: 12px;
-
-  &__icon {
-    width: 1rem;
-    height: 1rem;
-  }
 
   &__error {
     color: red;
@@ -12,30 +9,22 @@
   }
 
   &__button-group {
-    display: inline-flex;
+    @include bookmark-button-group();
   }
 
   &__button {
-    width: 48px;
-    margin-right: 6px;
-
-    &.is-close {
-
-    }
+    @include bookmark-button();
   }
 
   &__form {
-    margin: 12px 0 12px 113px;
+    @include bookmark-form();
   }
 
   &__label {
-    display: block;
-    font-size: 0.75rem;
-    margin-bottom: 4px;
+    @include bookmark-label();
   }
 
   &__input {
-    display: block;
-    margin-bottom: 8px;
+    @include bookmark-input();
   }
 }

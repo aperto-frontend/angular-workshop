@@ -7,5 +7,22 @@
                        (bookmarkChange)="bookmarkChange(i, $event)"
     >
     </app-bookmark-item>
+    <div class="bookmarks__button-group">
+      <button *ngIf="!newMode" (click)="onNew($event)" class="bookmarks__button">new</button>
+      <button *ngIf="newMode" (click)="onNewClose($event)" class="bookmarks__button">close</button>
+    </div>
+    <form (submit)="create($event)" action="#" method="get" #bookmarkForm *ngIf="newMode" class="bookmarks__form">
+      <div class="bookmarks__form-group">
+        <label class="bookmarks__label" for="title-new">Title</label>
+        <input #titleInput class="bookmarks__input" type="text" id="title-new" />
+      </div>
+      <div class="bookmarks__form-group">
+        <label class="bookmarks__label" for="url-new">URL</label>
+        <input #urlInput class="bookmarks__input" type="text" id="url-new" />
+      </div>
+      <div class="bookmarks__form-group">
+        <button type="submit" class="bookmarks__button is-form-group">create</button>
+      </div>
+    </form>
   </div>
 </div>
