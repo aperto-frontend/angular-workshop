@@ -33,4 +33,11 @@ export class BookmarksComponent implements OnInit {
   ngOnInit() {
   }
 
+  delete(id: number) {
+    const bookmarks = this.bookmarks.filter((bookmark) => {
+      return bookmark.id !== id;
+    });
+
+    this.bookmarks = [...bookmarks];
+  }
 }

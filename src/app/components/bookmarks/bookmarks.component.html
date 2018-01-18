@@ -1,6 +1,9 @@
 <div class="bookmarks">
   <h1 class="bookmarks__headline">Bookmarks</h1>
   <ul class="bookmarks__list">
-    <app-bookmark-item *ngFor="let bookmark of bookmarks" [bookmark]="bookmark"></app-bookmark-item>
+    <app-bookmark-item *ngFor="let bookmark of bookmarks"
+                       [bookmark]="bookmark"
+                       (deleteRequest)="delete($event)">
+    </app-bookmark-item>
   </ul>
 </div>
