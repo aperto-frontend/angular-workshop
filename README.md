@@ -1,27 +1,66 @@
-# AngularWorkshop
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angular-workshop)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+# Exercise 7: Data Binding: 2-way
 
-## Development server
+This branch has been achieved by performing the following steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step A
 
-## Code scaffolding
+In order to use 2-way binding on inputs add the Forms Module in app.module.ts 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```javascript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // <-- here
 
-## Build
+import { AppComponent } from './app.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { BookmarkItemComponent } from './components/bookmarks/bookmark-item/bookmark-item.component';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+@NgModule({
+  declarations: [
+    AppComponent,
+    BookmarksComponent,
+    BookmarkItemComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule // <-- here
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Running unit tests
+## Step B
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Apply 2-way-binding via `[(ngModel)]` to the inputs created in exercise 5 in `bookmark-item.component.html`
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```html
+<div class="bookmark-item">
+  <div class="bookmark-item__content">
+    <div class="bookmark-item__button-group">
+      <button *ngIf="!editMode" (click)="onEdit($event)" class="bookmark-item__button">edit</button>
+      <button *ngIf="editMode" (click)="onEditClose($event)" class="bookmark-item__button is-close">close</button>
+  
+      <button (click)="onDelete($event)" class="bookmark-item__button">delete</button>
+    </div>
+    <a target="_blank" rel="noopener" href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+    <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmark-item__error">(Missing url)</span></span>
+  </div>
+  
+  <div *ngIf="editMode" class="bookmark-item__form">
+    <div class="bookmark-item__form-group">
+      <label class="bookmark-item__label" [attr.for]="'title-' + bookmark.id">Title</label>
+  
+      <input class="bookmark-item__input" type="text" [id]="'title-' + bookmark.id" [(ngModel)]="bookmark.title" (ngModelChange)="onBookmarkChange($event)" />
+    </div>
+    <div class="bookmark-item__form-group">
+      <label class="bookmark-item__label" [attr.for]="'url-' + bookmark.id">URL</label>
+  
+      <input class="bookmark-item__input" type="text" [id]="'url-' + bookmark.id" [(ngModel)]="bookmark.url" (ngModelChange)="onBookmarkChange($event)" />
+    </div>
+  </div>
+</div>
+```
