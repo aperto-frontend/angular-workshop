@@ -59,6 +59,8 @@ Add the event handler `(deleteRequest)="delete($event)"` that will receive the e
 </ul>
 ```
 
+## Step A
+
 And finally write the `delete` function for the delete in `bookmarks.component.ts`
 
 ```javascript
@@ -97,4 +99,4 @@ export class BookmarksComponent {
 }
 ```
 
-The function filters all bookmarks by comparing the ids. It creates a new array containing all bookmarks without the one that was passed in.
+The function filters all bookmarks by comparing the ids. It creates a new array containing all bookmarks without the one that was passed in using the [Array Spread Operator](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_operator).
