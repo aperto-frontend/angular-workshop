@@ -2,8 +2,7 @@
   <h1>Bookmarks</h1>
   <ul class="bookmarks__list">
     <li *ngFor="let bookmark of bookmarks;">
-      <a target="_blank" rel="noopener" href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
-      <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmarks__error">(Missing url)</span></span>
+      <a target="_blank" rel="noopener" href="{{bookmark.url}}">{{bookmark.title || bookmark.url}}</a>
     </li>
   </ul>
 </div>
