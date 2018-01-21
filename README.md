@@ -1,27 +1,132 @@
-# AngularWorkshop
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angular-workshop)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+# Exercise 8: Template Reference 
 
-## Development server
+This branch has been achieved by performing the following steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step A
 
-## Code scaffolding
+Create a `newMode` variable and add two functions for setting `newMode` true/false in the `bookmarks.component.ts`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```javascript
+export class BookmarksComponent implements OnInit {
+  newMode = false;
+  
+  onNew() {
+    this.newMode = true;
+  }
 
-## Build
+  onNewClose() {
+    this.newMode = false;
+  }
+  
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Create the form for creating new bookmarks in `bookmarks.component.html` that invokes a `create` function when submitted
 
-## Running unit tests
+```html
+<div class="bookmarks">
+  <h1 class="bookmarks__headline">Bookmarks</h1>
+  <div class="bookmarks__list">
+    <app-bookmark-item *ngFor="let bookmark of bookmarks; let i = index;"
+                       [bookmark]="bookmark"
+                       (deleteRequest)="delete($event)"
+                       (bookmarkChange)="bookmarkChange(i, $event)"
+    >
+    </app-bookmark-item>
+    <div class="bookmarks__button-group">
+      <button *ngIf="!newMode" (click)="onNew($event)" class="bookmarks__button">new</button>
+      <button *ngIf="newMode" (click)="onNewClose($event)" class="bookmarks__button">close</button>
+    </div>
+  
+    <form (submit)="create(titleInput.value, urlInput.value)" action="#" method="get" *ngIf="newMode" class="bookmarks__form">
+      <div class="bookmarks__form-group">
+        <label class="bookmarks__label" for="title-new">Title</label>
+        <input #titleInput class="bookmarks__input" type="text" id="title-new" />
+      </div>
+      <div class="bookmarks__form-group">
+        <label class="bookmarks__label" for="url-new">URL</label>
+        <input #urlInput class="bookmarks__input" type="text" id="url-new" />
+      </div>
+      <div class="bookmarks__form-group">
+        <button type="submit" class="bookmarks__button is-form-group">create</button>
+      </div>
+    </form>
+  </div>
+</div>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Step B
 
-## Running end-to-end tests
+Implement the `create` function body in the`bookmarks.component.ts` that receives the title and url via the event
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```javascript
+export class BookmarksComponent {
 
-## Further help
+  bookmarks = [
+    {
+      id: 1,
+      title: 'Tour of Heroes',
+      url: 'https://angular.io/tutorial'
+    },
+    {
+      id: 2,
+      title: 'CLI Documentation',
+      url: 'https://github.com/angular/angular-cli/wiki'
+    },
+    {
+      id: 3,
+      url: 'https://blog.angular.io'
+    },
+    {
+      id: 4,
+      title: 'Angular Home'
+    }
+  ];
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  newMode = false;
+
+  constructor() { }
+
+  bookmarkChange(index: number, bookmark: IBookmark) {
+    const updatedBookmarks = [...this.bookmarks];
+    updatedBookmarks[index] = bookmark;
+
+    this.bookmarks = updatedBookmarks;
+
+    console.log(this.bookmarks);
+  }
+
+  delete(id: number) {
+    const bookmarks = this.bookmarks.filter((bookmark) => {
+      return bookmark.id !== id;
+    });
+
+    this.bookmarks = [...bookmarks];
+  }
+
+  onNew() {
+    this.newMode = true;
+  }
+
+  onNewClose() {
+    this.newMode = false;
+  }
+
+  create(title: string, url: string) {
+    event.preventDefault();
+
+    const createdBookmark: IBookmark = {
+      id: this.bookmarks.length + 1,
+      title: title,
+      url: url
+    };
+
+    this.newMode = false;
+
+    this.bookmarks = [...this.bookmarks, createdBookmark];
+  }
+}
+```
+
+The create function creates a new object with an incremented id and the received title and url. It extends the bookmarks using the spread operator by this newly created object. It then sets newMode to false what causes the form to be removed from the DOM.
