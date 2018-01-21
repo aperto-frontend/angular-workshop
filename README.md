@@ -1,4 +1,4 @@
-[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angularworkshop)
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angular-workshop)
 
 # Exercise 2: Components
 
