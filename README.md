@@ -1,27 +1,125 @@
-# AngularWorkshop
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angular-workshop)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+# Exercise 9: Services and Dependency Injection
 
-## Development server
+This branch has been achieved by performing the following steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step A
 
-## Code scaffolding
+Use ng generate command to create the Bookmarks service 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+ng g service services/bookmarks
+```
 
-## Build
+This should create a services folder and the bookmark service
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```
+src
+└── app
+    └── services
+        └── bookmarks.service.ts
+        └── bookmarks.service.spec.ts
+```
 
-## Running unit tests
+Register the service in the `app.module.ts` as a provider
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```javascript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-## Running end-to-end tests
+import { AppComponent } from './app.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { BookmarkItemComponent } from './components/bookmarks/bookmark-item/bookmark-item.component';
+import { BookmarksService } from './services/bookmarks.service'; // <-- here
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+@NgModule({
+  declarations: [
+    AppComponent,
+    BookmarksComponent,
+    BookmarkItemComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  providers: [BookmarksService], // <-- here
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Step B
+
+Inject the service into the `bokmarks.component.ts`
+
+```javascript
+import { Component, OnInit} from '@angular/core';
+import { BookmarksService } from '../../services/bookmarks.service'; // <-- here
+
+@Component({
+  selector: 'app-bookmarks',
+  templateUrl: './bookmarks.component.html',
+  styleUrls: ['./bookmarks.component.scss']
+})
+export class BookmarksComponent implements OnInit {
+
+  constructor(private bookmarksService: BookmarksService) { } // <-- here
+```
+
+Use the `ngOnInit` lifecycle hook and invoke the service
+
+```javascript
+export class BookmarksComponent implements OnInit {
+
+  bookmarks: [];
+
+  newMode = false;
+
+  constructor(private bookmarksService: BookmarksService) { }
+
+  ngOnInit() {
+    this.bookmarks = this.bookmarksService.get();
+  }
+```
+
+Move the mocked data model from the mock-file to the service
+
+```javascript
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class BookmarksService {
+
+  constructor() { }
+
+  get() {
+    return [
+      {
+        id: 1,
+        title: 'Tour of Heroes',
+        url: 'https://angular.io/tutorial'
+      },
+      {
+        id: 2,
+        title: 'CLI Documentation',
+        url: 'https://github.com/angular/angular-cli/wiki'
+      },
+      {
+        id: 3,
+        url: 'https://blog.angular.io'
+      },
+      {
+        id: 4,
+        title: 'Angular Home'
+      }
+    ];
+  }
+}
+```
+
+## Optional
+
+Move all CRUD methods to the service and remove all dummy data...
