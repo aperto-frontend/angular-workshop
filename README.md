@@ -1,27 +1,73 @@
-# AngularWorkshop
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angularworkshop)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+# Exercise 2: Components
 
-## Development server
+This branch has been achieved by performing the following steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step A
 
-## Code scaffolding
+In the root of the project run 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+ng g component bookmarks
+```
 
-## Build
+what creates a Bookmarks component consisting of
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```
+src
+└── app
+    └── components
+        └── bookmarks
+            └── bookmarks
+                └── bookmarks.component.html (Template)
+                └── bookmarks.component.scss (Style)
+                └── bookmarks.component.spec.ts (Test)
+                └── bookmarks.component.ts (Component logic)
+```
 
-## Running unit tests
+Add a unordered list of links to bookmarks.component.html
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```html
+<div class="bookmarks">
+  <h1>Bookmarks</h1>
+  <ul class="bookmarks__list">
+    <li>
+      <a href="#">Title One</a>
+    </li>
+    <li>
+      <a href="#">Title Two</a>
+    </li>
+    <li>
+      <a href="#">Title Three</a>
+    </li>
+  </ul>
+</div>
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Invoke the bookmark component in the app.component (the root component)
 
-## Further help
+```html
+<app-bookmarks></app-bookmarks>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Step B
+
+Add global styles in `styles.scss` (located in the src folder)
+
+```scss
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+```
+
+Add local component styles in `bookmarks.component.scss`
+
+```scss
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+```
