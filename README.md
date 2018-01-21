@@ -1,27 +1,81 @@
-# AngularWorkshop
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angular-workshop)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+# Exercise 6: Attribute directives
 
-## Development server
+This branch has been achieved by performing the following steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step A
 
-## Code scaffolding
+Create two buttons edit and close in the `bookmark-item.component.html` that call functions `onEdit` and `onEditClose`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```html
+<div class="bookmark-item">
+  <div class="bookmark-item__content">
+    <div class="bookmark-item__button-group">
+    
+      <button *ngIf="!editMode" (click)="onEdit($event)" class="bookmark-item__button">edit</button>
+      <button *ngIf="editMode" (click)="onEditClose($event)" class="bookmark-item__button is-close">close</button>
+      
+      <button (click)="onDelete($event)" class="bookmark-item__button">delete</button>
+    </div>
+    <a target="_blank" rel="noopener" href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+    <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmark-item__error">(Missing url)</span></span>
+  </div>
+</div>
+```
 
-## Build
+Add the editMode variable and implement the two function bodies in `bookmark-item.component.ts`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```javascript
+export class BookmarkItemComponent {
+  @Input() bookmark;
 
-## Running unit tests
+  @Output() deleteRequest: EventEmitter<string> = new EventEmitter<string>();
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  editMode = false;
 
-## Running end-to-end tests
+  constructor() { }
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+  onDelete(event: any) {
+    this.deleteRequest.emit(this.bookmark.id);
+  }
 
-## Further help
+  onEdit(event: any) {
+    this.editMode = true;
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  onEditClose(event: any) {
+    this.editMode = false;
+  }
+}
+```
+
+## Step B
+
+Extend the `bookmark-item.component.html` template by the edit case that is defined by editMode
+
+```html
+<div class="bookmark-item">
+  <div class="bookmark-item__content">
+    <div class="bookmark-item__button-group">
+      <button *ngIf="!editMode" (click)="onEdit($event)" class="bookmark-item__button">edit</button>
+      <button *ngIf="editMode" (click)="onEditClose($event)" class="bookmark-item__button is-close">close</button>
+  
+      <button (click)="onDelete($event)" class="bookmark-item__button">delete</button>
+    </div>
+    <a target="_blank" rel="noopener" href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+    <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmark-item__error">(Missing url)</span></span>
+  </div>
+  
+  <div *ngIf="editMode" class="bookmark-item__form">
+    <div class="bookmark-item__form-group">
+      <label class="bookmark-item__label" [attr.for]="'title-' + bookmark.id">Title</label>
+      <input class="bookmark-item__input" type="text" [id]="'title-' + bookmark.id" [value]="bookmark.title || ''" />
+    </div>
+    <div class="bookmark-item__form-group">
+      <label class="bookmark-item__label" [attr.for]="'url-' + bookmark.id">URL</label>
+      <input class="bookmark-item__input" type="text" [id]="'url-' + bookmark.id" [value]="bookmark.url || ''" />
+    </div>
+  </div>
+</div>
+```
