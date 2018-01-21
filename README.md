@@ -1,27 +1,50 @@
-# AngularWorkshop
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angular-workshop)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+# Exercise 4: Child Components
 
-## Development server
+This branch has been achieved by performing the following steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step A
 
-## Code scaffolding
+Create a child component of Bookmarks using called BookmarkItem
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+ng g component components/bookmarks/bookmark-item
+```
 
-## Build
+Move the inner html of `bookmark.component.html` to the child’s html template `bookmark-item.component.html`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```html
+<li class="bookmark-item">
+  <a href="{{bookmark.url}}">{{bookmark.title || bookmark.url}}</a>
+</li>
+```
 
-## Running unit tests
+Invoke the child in the parent template
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```html
+<ul class="bookmarks__list">
+  <app-bookmark-item *ngFor="let bookmark of bookmarks" [bookmark]="bookmark"></app-bookmark-item>
+</ul>
+```
 
-## Running end-to-end tests
+Add the @Input property in the child class to pass a bookmark
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```javascript
+export class BookmarkItemComponent {
+  @Input() bookmark;
 
-## Further help
+  constructor() { }
+}
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Step B
+
+Add an error message to `bookmark-item.component.html` if the URL of a bookmark is missing, show the URL if the title is missing
+
+```html
+<li class="bookmark-item">
+  <a target="_blank" rel="noopener" href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+  <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmarks__error">(Missing url)</span></span>
+</li>
+```
