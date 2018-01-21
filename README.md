@@ -15,7 +15,6 @@ Create a delete button in the `bookmark-item.component.html` with an event bindi
   <a target="_blank" rel="noopener" href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
   <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmark-item__error">(Missing url)</span></span>
 </li>
-
 ```
 
 Implement the `onDelete` function in the class body of `bookmark-item.component.ts`
@@ -58,9 +57,9 @@ Add the event handler `(deleteRequest)="delete($event)"` that will receive the e
                      (deleteRequest)="delete($event)">
   </app-bookmark-item>
 </ul>
-```html
+```
 
-And finally write the `delete` function for the delete in `bookmarks.component.ts`.
+And finally write the `delete` function for the delete in `bookmarks.component.ts`
 
 ```javascript
 export class BookmarksComponent {
