@@ -1,27 +1,55 @@
-# AngularWorkshop
+[Back to exercise index](https://github.com/aperto-frontend/angular-workshop#angular-workshop)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+# Exercise 3: Templating
 
-## Development server
+This branch has been achieved by performing the following steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step A
 
-## Code scaffolding
+Hardcode a dummy array of bookmarks in `bookmarks.component.ts` as a class variable directly after the class keyword
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```javascript
+  bookmarks = [
+    {
+      id: 1,
+      title: 'Tour of Heroes',
+      url: 'https://angular.io/tutorial'
+    },
+    {
+      id: 2,
+      title: 'CLI Documentation',
+      url: 'https://github.com/angular/angular-cli/wiki'
+    },
+    {
+      id: 3,
+      url: 'https://blog.angular.io/'
+    },
+    {
+      id: 4,
+      title: 'Angular Home'
+    }
+  ];
+```
 
-## Build
+## Step B
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Iterate the bookmarks in `bookmarks.component.html` with a ngFor directive
 
-## Running unit tests
+```html
+<ul class="bookmarks__list">
+  <li *ngFor="let bookmark of bookmarks;">
+    <a href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+  </li>
+</ul>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Optional
 
-## Running end-to-end tests
+Add an error text if the url is missing (as a sibling of the link tag)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```html
+    <span *ngIf="!bookmark.url && bookmark.title">
+      {{bookmark.title}}
+      <span class="bookmarks__error">(Missing url)</span>
+    </span>
+```
