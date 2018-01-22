@@ -38,18 +38,15 @@ Iterate the bookmarks in `bookmarks.component.html` with a ngFor directive
 ```html
 <ul class="bookmarks__list">
   <li *ngFor="let bookmark of bookmarks;">
-    <a href="{{bookmark.url}}" *ngIf="bookmark.url">{{bookmark.title || bookmark.url}}</a>
+    <a href="{{bookmark.url}}">{{bookmark.title}}</a>
   </li>
 </ul>
 ```
 
 ## Optional
 
-Add an error text if the url is missing (as a sibling of the link tag)
+Display the URL if the title is missing
 
 ```html
-    <span *ngIf="!bookmark.url && bookmark.title">
-      {{bookmark.title}}
-      <span class="bookmarks__error">(Missing url)</span>
-    </span>
+<a target="_blank" rel="noopener" href="{{bookmark.url}}">{{bookmark.title || bookmark.url}}</a>
 ```
