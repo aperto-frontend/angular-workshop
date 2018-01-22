@@ -10,7 +10,7 @@ Install the Angular CLI, create the project and run it
 
 ```
 npm install -g @angular/cli@1.6.3
-ng new my-angular-workshop
+ng new my-angular-workshop --style=scss
 npm install
 
 ng start
