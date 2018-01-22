@@ -26,7 +26,7 @@ src
                 └── bookmarks.component.ts (Component logic)
 ```
 
-Add a unordered list of links to bookmarks.component.html
+Add a unordered list of links to `bookmarks.component.html`
 
 ```html
 <div class="bookmarks">
@@ -46,7 +46,7 @@ Add a unordered list of links to bookmarks.component.html
 
 ```
 
-Invoke the bookmark component in the app.component (the root component)
+Invoke the bookmark component in the `app.component.html` (the root component)
 
 ```html
 <app-bookmarks></app-bookmarks>
@@ -60,6 +60,10 @@ Add global styles in `styles.scss` (located in the src folder)
 body {
   font-family: Helvetica, Arial, sans-serif;
 }
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 ```
 
 Add local component styles in `bookmarks.component.scss`
@@ -69,5 +73,9 @@ Add local component styles in `bookmarks.component.scss`
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.bookmarks {
+  /* your styles */
 }
 ```
