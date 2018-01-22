@@ -19,3 +19,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Code scaffolding (CLI)
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Switch branches (GIT)
+
+To switch between the exercise branches using the console
+
+`git reset --hard`
+
+`git checkout -b feature/exercise-NUMBER`
