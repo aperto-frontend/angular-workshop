@@ -14,7 +14,7 @@
       <span *ngIf="!bookmarks.length && !newMode" class="bookmarks__inline-text">bookmark!</span>
       <button *ngIf="newMode" (click)="onNewClose($event)" class="bookmarks__button">close</button>
     </div>
-    <form (submit)="create($event)" action="#" method="get" #bookmarkForm *ngIf="newMode" class="bookmarks__form">
+    <form (submit)="create(titleInput.value, urlInput.value)" action="#" method="get" *ngIf="newMode" class="bookmarks__form">
       <div class="bookmarks__form-group">
         <label class="bookmarks__label" for="title-new">Title</label>
         <input #titleInput class="bookmarks__input" type="text" id="title-new" />

@@ -1,6 +1,4 @@
-import {
-  Component, ElementRef, OnInit, ViewChild
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IBookmark } from './bookmark.interface';
 import { BookmarksService } from '../../services/bookmarks.service';
 @Component({
@@ -9,12 +7,6 @@ import { BookmarksService } from '../../services/bookmarks.service';
   styleUrls: ['./bookmarks.component.scss']
 })
 export class BookmarksComponent implements OnInit {
-
-  @ViewChild('bookmarkForm') bookmarkForm: ElementRef;
-
-  @ViewChild('titleInput') titleInput: ElementRef;
-
-  @ViewChild('urlInput') urlInput: ElementRef;
 
   bookmarks: IBookmark[];
 
@@ -28,15 +20,14 @@ export class BookmarksComponent implements OnInit {
     this.bookmarks = this.bookmarksService.get();
   }
 
-  create(event: any) {
+  create(title: string, url: string) {
     event.preventDefault();
 
     this.bookmarks = this.bookmarksService.create({
-      title: this.titleInput.nativeElement.value,
-      url: this.urlInput.nativeElement.value
+      title: title,
+      url: url
     });
 
-    this.bookmarkForm.nativeElement.reset();
     this.newMode = false;
     this.updateIndex = -1;
   }
