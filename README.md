@@ -122,4 +122,124 @@ export class BookmarksService {
 
 ## Optional
 
-Move all CRUD methods to the service and remove all dummy data...
+Move all CRUD methods to the service and remove all dummy data. The `bookmarks.service.ts` service now contains 4 CRUD methods
+
+```javascript
+import { Injectable } from '@angular/core';
+import { IBookmark, IBookmarkData } from '../components/bookmarks/bookmark.interface';
+
+@Injectable()
+export class BookmarksService {
+
+  constructor() { }
+
+  create(bookmarkData: IBookmarkData): IBookmark[] {
+    let bookmarks = this.get();
+
+    const newBookmark: IBookmark = {
+      id: bookmarks.length + 1,
+      title: bookmarkData.title,
+      url: bookmarkData.url
+    };
+
+    bookmarks = [...bookmarks, newBookmark];
+
+    return this.save(bookmarks);
+  }
+
+  update(index: number, bookmark: IBookmark): IBookmark[] {
+    let bookmarks = this.get();
+
+    if (bookmarks && bookmarks.length && bookmarks[index]) {
+      const updatedBookmarks = [...bookmarks];
+      updatedBookmarks[index] = bookmark;
+
+      bookmarks = updatedBookmarks;
+    }
+
+    return this.save(bookmarks);
+  }
+
+  delete(id: number): IBookmark[] {
+    let bookmarks = this.get();
+
+    bookmarks = bookmarks.filter((bookmark) => {
+      return bookmark.id !== id;
+    });
+
+    // remap id's
+    bookmarks = bookmarks.map((bookmark, index) => {
+      bookmark.id = index + 1;
+      return bookmark;
+    });
+
+    return this.save(bookmarks);
+  }
+
+  get(): IBookmark[] {
+    const bookmarksJson = localStorage.getItem('bookmarks');
+    let bookmarks = [];
+
+    if (bookmarksJson) {
+      bookmarks = JSON.parse(bookmarksJson);
+    }
+
+    return bookmarks;
+  }
+
+  save(bookmarks: IBookmark[] = []): IBookmark[] {
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+
+    return this.get();
+  }
+}
+```
+
+while the bookmarks.component.ts only uses the service
+
+```javascript
+export class BookmarksComponent implements OnInit {
+
+  bookmarks: IBookmark[];
+  newMode = false;
+  updateIndex = -1;
+
+  constructor(private bookmarksService: BookmarksService) { }
+
+  ngOnInit() {
+    this.bookmarks = this.bookmarksService.get();
+  }
+
+  create(title: string, url: string) {
+    event.preventDefault();
+
+    this.bookmarks = this.bookmarksService.create({
+      title: title,
+      url: url
+    });
+
+    this.newMode = false;
+    this.updateIndex = -1;
+  }
+
+  update(index: number, bookmark: IBookmark) {
+    this.bookmarks = this.bookmarksService.update(index, bookmark);
+    this.updateIndex = index;
+  }
+
+  delete(id: number) {
+    this.bookmarks = this.bookmarksService.delete(id);
+    this.updateIndex = -1;
+  }
+
+  onNew() {
+    this.newMode = true;
+    this.updateIndex = -1;
+  }
+
+  onNewClose() {
+    this.newMode = false;
+    this.updateIndex = -1;
+  }
+}
+```
