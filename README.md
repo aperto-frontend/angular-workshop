@@ -6,7 +6,7 @@ This branch has been achieved by performing the following steps:
 
 ## Step A
 
-Create a child component of Bookmarks using called BookmarkItem
+Create a Bookmarks component's child named `bookmark-item` using the CLI. Executed the CLI command in the project root directory
 
 ```
 ng g component components/bookmarks/bookmark-item
@@ -48,3 +48,6 @@ Add an error message to `bookmark-item.component.html` if the URL of a bookmark 
   <span *ngIf="!bookmark.url && bookmark.title">{{bookmark.title}} <span class="bookmarks__error">(Missing url)</span></span>
 </li>
 ```
+
+## Documentation
+* https://angular.io/guide/component-interaction 
