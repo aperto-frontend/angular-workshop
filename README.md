@@ -11,7 +11,7 @@
 7. [Data Binding: 2-way](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-7#exercise-7-data-binding-2-way)
 8. [Template Reference](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-8#exercise-8-template-reference)
 9. [Services and Dependency Injection](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-9#exercise-9-services-and-dependency-injection)
-10. Router
+10. [Router](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-10#exercise-10-router)
 
 ## Switch branches (GIT)
 
