@@ -195,7 +195,7 @@ export class BookmarksService {
 }
 ```
 
-while the bookmarks.component.ts only uses the service
+while the `bookmarks.component.ts` only uses the service
 
 ```javascript
 export class BookmarksComponent implements OnInit {
@@ -211,8 +211,6 @@ export class BookmarksComponent implements OnInit {
   }
 
   create(title: string, url: string) {
-    event.preventDefault();
-
     this.bookmarks = this.bookmarksService.create({
       title: title,
       url: url
@@ -243,3 +241,9 @@ export class BookmarksComponent implements OnInit {
   }
 }
 ```
+
+## Documentation
+
+* https://angular.io/tutorial/toh-pt4#why-services
+* https://angular.io/guide/lifecycle-hooks
+* https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
