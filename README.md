@@ -58,7 +58,7 @@ Create the form for creating new bookmarks in `bookmarks.component.html` that in
 
 ## Step B
 
-Implement the `create` function body in the`bookmarks.component.ts` that receives the title and url via the event
+Implement the `create` function body in the `bookmarks.component.ts` that receives the `title` and `url` in the function arguments from the event
 
 ```javascript
 export class BookmarksComponent {
@@ -87,15 +87,6 @@ export class BookmarksComponent {
   newMode = false;
 
   constructor() { }
-
-  bookmarkChange(index: number, bookmark: IBookmark) {
-    const updatedBookmarks = [...this.bookmarks];
-    updatedBookmarks[index] = bookmark;
-
-    this.bookmarks = updatedBookmarks;
-
-    console.log(this.bookmarks);
-  }
 
   delete(id: number) {
     const bookmarks = this.bookmarks.filter((bookmark) => {
@@ -129,4 +120,8 @@ export class BookmarksComponent {
 }
 ```
 
-The create function creates a new object with an incremented id and the received title and url. It extends the bookmarks using the spread operator by this newly created object. It then sets newMode to false what causes the form to be removed from the DOM.
+The create function creates a new object with an incremented id and the received title and url. It extends the bookmarks using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) by this newly created object. It then sets newMode to false what causes the form to be removed from the DOM.
+
+## Documentation
+
+* https://angular.io/guide/template-syntax#template-reference-variables--var-

@@ -37,11 +37,6 @@ export class BookmarksComponent implements OnInit {
   }
 
   bookmarkChange(index: number, bookmark: IBookmark) {
-    const updatedBookmarks = [...this.bookmarks];
-    updatedBookmarks[index] = bookmark;
-
-    this.bookmarks = updatedBookmarks;
-
     console.log(this.bookmarks);
   }
 
