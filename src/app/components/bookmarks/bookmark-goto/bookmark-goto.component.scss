@@ -1,0 +1,18 @@
+.bookmark-goto {
+
+  position: relative;
+
+  &__over {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__frame {
+    width: 100vw;
+    height: 100vh;
+  }
+}

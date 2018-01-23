@@ -60,6 +60,21 @@ export class BookmarksService {
     return bookmarks;
   }
 
+  getById(id: number): IBookmark {
+    let bookmarks = this.get();
+
+    bookmarks = bookmarks.filter((bookmark) => {
+      console.log(bookmark.id, id, bookmark.id === id);
+      return bookmark.id === id;
+    });
+
+    if (bookmarks.length) {
+      return bookmarks[0];
+    }
+
+    return null;
+  }
+
   save(bookmarks: IBookmark[] = []): IBookmark[] {
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
 
