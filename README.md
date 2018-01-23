@@ -13,7 +13,7 @@ npm install -g @angular/cli@1.6.3
 ng new my-angular-workshop --style=scss
 npm install
 
-ng start
+ng serve
 ```
 
 ## Step B
