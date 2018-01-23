@@ -19,11 +19,10 @@ src
 └── app
     └── components
         └── bookmarks
-            └── bookmarks
-                └── bookmarks.component.html (Template)
-                └── bookmarks.component.scss (Style)
-                └── bookmarks.component.spec.ts (Test)
-                └── bookmarks.component.ts (Component logic)
+            └── bookmarks.component.html (Template)
+            └── bookmarks.component.scss (Style)
+            └── bookmarks.component.spec.ts (Test)
+            └── bookmarks.component.ts (Component logic)
 ```
 
 Add a unordered list of links to `bookmarks.component.html`
