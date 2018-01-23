@@ -54,13 +54,64 @@ Apply 2-way-binding via `[(ngModel)]` to the inputs created in exercise 5 in `bo
     <div class="bookmark-item__form-group">
       <label class="bookmark-item__label" [attr.for]="'title-' + bookmark.id">Title</label>
   
-      <input class="bookmark-item__input" type="text" [id]="'title-' + bookmark.id" [(ngModel)]="bookmark.title" (ngModelChange)="onBookmarkChange($event)" />
+      <!-- [(ngModel)] here -->
+      <input class="bookmark-item__input" type="text" [id]="'title-' + bookmark.id" [(ngModel)]="bookmark.title" />
     </div>
     <div class="bookmark-item__form-group">
       <label class="bookmark-item__label" [attr.for]="'url-' + bookmark.id">URL</label>
   
-      <input class="bookmark-item__input" type="text" [id]="'url-' + bookmark.id" [(ngModel)]="bookmark.url" (ngModelChange)="onBookmarkChange($event)" />
+      <!-- [(ngModel)] and here -->
+      <input class="bookmark-item__input" type="text" [id]="'url-' + bookmark.id" [(ngModel)]="bookmark.url" />
     </div>
   </div>
 </div>
 ```
+
+Add a debug output using the JSON pipe in the parent component `bookmarks.component.html`
+
+```html
+<pre>{{ bookmarks | json }}</pre>
+```
+
+While changing bookmark properties in the item component the changes get automatically noticed in the bookmarks array and displayed by the pipe.
+
+## Optional
+
+Create a IBookmark typescript interface inside the bookmarks folder
+
+```
+└── components
+    └── bookmarks
+        └── bookmark.interface.ts
+```
+
+with following content
+
+```javascript
+export interface IBookmark {
+  id: number;
+  title: string;
+  url: string;
+}
+
+```
+
+and assign all Bookmark variables in `bookmark-item.component.ts` the correct type
+
+```javascript
+import { IBookmark } from '../bookmark.interface';
+...
+
+export class BookmarkItemComponent {
+
+  @Output() bookmarkChange: EventEmitter<IBookmark> = new EventEmitter<IBookmark>();
+  
+  ...
+
+```
+
+## Documentation
+
+* https://angular.io/guide/pipes
+* https://www.typescriptlang.org/docs/handbook/interfaces.html
+* https://angular.io/guide/template-syntax#two-way-binding---
