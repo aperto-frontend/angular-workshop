@@ -1,6 +1,6 @@
 # Angular Workshop
 
-# Exercises
+# Solution Branches
 
 1. [Angular CLI](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-1#exercise-1-angular-cli)
 2. [Components](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-2#exercise-2-components)
@@ -11,6 +11,17 @@
 7. [Data Binding: 2-way](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-7#exercise-7-data-binding-2-way)
 8. [Template Reference](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-8#exercise-8-template-reference)
 9. [Services and Dependency Injection](https://github.com/aperto-frontend/angular-workshop/tree/feature/exercise-9#exercise-9-services-and-dependency-injection)
+10. Router
+
+## Switch branches (GIT)
+
+To switch between the exercise branches using following console commands
+
+`git reset --hard`
+
+`git clean -fd`
+
+`git checkout feature/exercise-[1-10]`
 
 ## Development server
 
@@ -20,10 +31,3 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Switch branches (GIT)
-
-To switch between the exercise branches using the console
-
-`git reset --hard`
-
-`git checkout -b feature/exercise-NUMBER`
