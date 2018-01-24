@@ -1,5 +1,5 @@
 export interface IBookmarkData {
-  title: string;
+  title?: string;
 
   url: string;
 }

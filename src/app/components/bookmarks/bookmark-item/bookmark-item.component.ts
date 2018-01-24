@@ -11,10 +11,10 @@ import { IBookmark } from '../bookmark.interface';
 export class BookmarkItemComponent implements OnInit {
 
   @Input()
-  bookmark;
+  bookmark: IBookmark;
 
   @Output()
-  deleteRequest: EventEmitter<string> = new EventEmitter<string>();
+  deleteRequest: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
   bookmarkChange: EventEmitter<IBookmark> = new EventEmitter<IBookmark>();
