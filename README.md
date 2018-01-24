@@ -89,7 +89,6 @@ import { BookmarkItemComponent } from './components/bookmarks/bookmark-item/book
 import { BookmarksService } from './services/bookmarks.service';
 import { RouterModule, Routes } from '@angular/router';
 import { BookmarkGotoComponent } from './components/bookmarks/bookmark-goto/bookmark-goto.component';
-import { SafePipe } from './pipes/safe.pipe';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', component: BookmarksComponent },
@@ -101,8 +100,7 @@ const appRoutes: Routes = [
     AppComponent,
     BookmarksComponent,
     BookmarkItemComponent,
-    BookmarkGotoComponent,
-    SafePipe
+    BookmarkGotoComponent
   ],
   imports: [
     BrowserModule,
