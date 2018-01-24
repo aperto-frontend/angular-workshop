@@ -6,7 +6,7 @@ This branch has been achieved by performing the following steps:
 
 ## Step A
 
-In order to use 2-way binding on inputs add the Forms Module in app.module.ts 
+In order to use 2-way binding on inputs add the Forms Module in `app.module.ts`
 
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
@@ -77,7 +77,7 @@ While changing bookmark properties in the item component the changes get automat
 
 ## Optional
 
-Create a IBookmark typescript interface inside the bookmarks folder
+Create a `IBookmark` typescript interface inside the bookmarks folder
 
 ```
 └── components
@@ -90,7 +90,7 @@ with following content
 ```javascript
 export interface IBookmark {
   id: number;
-  title: string;
+  title?: string;
   url: string;
 }
 
